@@ -62,8 +62,10 @@ The implementation tracks:
 Number of nodes expanded
 Number of nodes visited
 Solution path length
+```
+
 Requirements
 Python 3.x
 No external dependencies required
 Course Information
-This project is part of an AI course focusing on search algorithms and their implementations in practical applications. ```
+This project is part of an AI course focusing on search algorithms and their implementations in practical applications. 
