@@ -1,0 +1,11 @@
+The figure above shows the optimal solution for building the word ladder from "BIDET" to "SPRAY."
+- (3 points) Based on the solution provided, explain how you will convert this into a search problem. Your answer should define the set of states and what actions move you from one state to another.
+
+- (2 points) Which of the two algorithms will provide you with the optimal solution? Why?
+
+
+
+start word | End word | new of node expanded | solution length |
+                      |     BFS   |    DFS   |  BFS   |  DFS   | 
+----------------------------------------------------------------
+lurk       |    hide  |           |          |        |        |
