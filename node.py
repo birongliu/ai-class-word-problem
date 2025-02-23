@@ -12,6 +12,21 @@ class Node:
         self.value = value
         self.previous_node = None
 
+
+    def get_depth(self):
+        """
+        Calculates the depth of the node in the search path.
+
+        Returns:
+            int: The depth of the node.
+        """
+        depth = 0
+        current_node = self
+        while current_node.get_parent() is not None:
+            depth += 1
+            current_node = current_node.get_parent()
+        return depth
+
     def set_parent(self, parent_node):
         """
         Sets the parent node, linking this node to a previous step in the search path.

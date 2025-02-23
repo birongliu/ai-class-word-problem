@@ -10,11 +10,8 @@ def main():
         print("The tested word is in our dictionary")
 
     print("**************Example to test search implementation **************")
-    # start_word = "drivers"
-    # end_word = "nearest"
-    start_word = input("Press Enter to start the search: ")
-
-    end_word = input("Press Enter to end the search:")
+    start_word = "BIDET"
+    end_word = "SPRAY."
     new_search = Search(start_word, end_word)
 
     goal_node = new_search.bfs()

@@ -17,6 +17,7 @@ class Search:
         """    
         self.start_word = start_word
         self.end_word = end_word
+        self.dictionary = Dictionary("words.txt")
 
     def bfs(self):
             """
@@ -25,28 +26,26 @@ class Search:
             Returns:
                 Node or None: The final Node representing the end_word if a path is found, otherwise None.
             """
-            # Check if words have same length
-            if len(self.start_word) != len(self.end_word):
-                return None
-                
+            # Check if words have same length            
             # Initialize data structures
             queue = deque()
             visited = set()
-            dictionary = Dictionary("words.txt")
             
             # Create and add start node
             start_node = Node(self.start_word)
             queue.append(start_node)
             visited.add(self.start_word)
+            visited_with_duplicate_count = 0
             
             # BFS algorithm
             while queue:
-                print(len(visited))
                 current_node = queue.popleft()
                 current_word = current_node.value
                 
+                visited_with_duplicate_count += 1
                 # Check if we've reached the target word
                 if current_word == self.end_word:
+                    print("Number of nodes expanded: ",visited_with_duplicate_count, "Number of nodes visited: ", len(visited), "Solution Length", current_node.get_depth())
                     return current_node
                     
                 # Try changing one letter at a time
@@ -58,16 +57,13 @@ class Search:
                         
                         # Check if word exists and hasn't been visited
                         if (next_word not in visited and 
-                            Dictionary.search_word(dictionary, next_word)):
+                            self.dictionary.search_word(next_word)):
                             next_node = Node(next_word)
                             next_node.set_parent(current_node)
                             queue.append(next_node)
-                            visited.add(next_word)
+                            visited.add(next_word)             
             return None
     
-
-
-
     def dfs(self):
         """
         Performs Depth-First Search (DFS).
@@ -78,21 +74,23 @@ class Search:
         # TODO: Implement DFS logic
         stack = []
         visited = set()
-        dictionary = Dictionary("words.txt")
+        visited_with_duplicate_count = 0
     
     # Create and add start node
         start_node = Node(self.start_word)
         stack.append(start_node)
     
         while stack:
-            current_node = stack.pop()  # Get last item (LIFO)
+            current_node = stack.pop() 
             current_word = current_node.value
-        
+
+            visited_with_duplicate_count += 1
             if current_word not in visited:
                 visited.add(current_word)
             
             # Check if we've reached the target word
             if current_word == self.end_word:
+                print("Number of nodes expanded: ",visited_with_duplicate_count, "Number of nodes visited: ", len(visited), "Solution Length", current_node.get_depth())
                 return current_node
             
             # Try changing one letter at a time
@@ -104,15 +102,11 @@ class Search:
                     
                     # Check if word exists and hasn't been visited
                     if (next_word not in visited and 
-                        dictionary.search_word(next_word)):
+                        self.dictionary.search_word(next_word)):
                         next_node = Node(next_word)
                         next_node.set_parent(current_node)
                         stack.append(next_node)
-        
         return None
-
-
-       
 
     def print_transformations(self, word_list):
         """
